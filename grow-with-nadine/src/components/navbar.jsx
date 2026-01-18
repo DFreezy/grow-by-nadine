@@ -10,7 +10,6 @@ let isProductPage = location.pathname === "/"
         <nav className="flex justify-between items-center p-5 bg-[#957F6A] text-white fixed w-full top-0 left-0 z-50">
             <div className="flex flex-row">
                 <img src="/growbynadine.jpeg" alt="Logo" className="h-10 w-15 inline mr-3 mt-3"/>
-                <h1>Grow By Nadine</h1>
             </div>
             <ul className="flex space-x-4 list-none">
                 <a href="#about"><li>About</li></a>
