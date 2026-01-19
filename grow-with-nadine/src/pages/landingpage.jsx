@@ -28,7 +28,7 @@ export default function LandingPage() {
           </h1>
 
           <h2 className="mt-4 text-xl md:text-2xl font-semibold text-[#f1e8dc]">
-            Where growth and beauty meet 🌿
+            Where natural care meets growth
           </h2>
 
           <p className="mt-6 max-w-lg mx-auto md:mx-0 text-gray-200">
