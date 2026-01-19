@@ -50,7 +50,7 @@ const removeFromCart = (index) => {
       return;
     }
 
-    const phoneNumber = "27774489359";
+    const phoneNumber = "27731577339";
 
     const orderItems = cart
       .map((item) => `${item.name} - R${item.price}`)

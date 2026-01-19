@@ -7,7 +7,7 @@ let isProductPage = location.pathname === "/"
 
     return (
     <div className="pt-14">
-        <nav className="flex justify-between items-center p-5 bg-[#957F6A] text-white fixed w-full top-0 left-0 z-50">
+        <nav className="flex justify-between items-center p-5 bg-[#957F6A] text-white fixed w-full top-0 left-0 z-50 sm:flex-wrap">
             <div className="flex flex-row">
                 <img src="/growbynadine.jpeg" alt="Logo" className="h-10 w-15 inline mr-3 mt-3"/>
             </div>
