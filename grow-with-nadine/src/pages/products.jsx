@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 
+const sanitizeInput = (value, maxLength = 100) => {
+  return value
+    .replace(/[<>]/g, "")          // remove HTML tags
+    .replace(/["'`;]/g, "")        // remove JS-breaking chars
+    .replace(/\s+/g, " ")          // normalize whitespace
+    .trim()
+    .slice(0, maxLength);
+};
+
 export default function Products() {
   const products = [
     {
@@ -40,23 +49,26 @@ const removeFromCart = (index) => {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   const checkoutWhatsApp = () => {
-    if (cart.length === 0) {
-      alert("Your cart is empty");
-      return;
-    }
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
 
-    if (!customerName || !address) {
-      alert("Please enter your name and delivery address");
-      return;
-    }
+  const cleanName = sanitizeInput(customerName, 50);
+  const cleanAddress = sanitizeInput(address, 200);
 
-    const phoneNumber = "27731577339";
+  if (!cleanName || !cleanAddress) {
+    alert("Please enter your name and delivery address");
+    return;
+  }
 
-    const orderItems = cart
-      .map((item) => `${item.name} - R${item.price}`)
-      .join("\n");
+  const phoneNumber = "27731577339";
 
-    const message = `Hello Grow with Nadine 🌿
+  const orderItems = cart
+    .map((item) => `${item.name} - R${item.price}`)
+    .join("\n");
+
+  const message = `Hello Grow with Nadine 🌿
 
 I would like to place an order:
 
@@ -64,16 +76,16 @@ ${orderItems}
 
 Total: R${total}
 
-Name: ${customerName}
-Delivery Address: ${address}
+Name: ${cleanName}
+Delivery Address: ${cleanAddress}
 `;
 
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
 
-    window.open(whatsappUrl, "_blank");
-  };
+  window.open(whatsappUrl, "_blank");
+};
 
   return (
     <div className="font-sans p-5">
@@ -130,21 +142,30 @@ Delivery Address: ${address}
             </div>
              
                <div className="mt-5 space-y-3">
-              <input
-                type="text"
-                placeholder="Your name"
-                value={customerName}
-                onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
-              />
+             <input
+  type="text"
+  placeholder="Your name"
+  value={customerName}
+  maxLength={50}
+  required
+  onChange={(e) =>
+    setCustomerName(sanitizeInput(e.target.value, 50))
+  }
+  className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
+/>
 
-              <textarea
-                placeholder="Delivery address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                rows={3}
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
-              />
+
+  <textarea
+  placeholder="Delivery address"
+  value={address}
+  maxLength={200}
+  required
+  rows={3}
+  onChange={(e) =>
+    setAddress(sanitizeInput(e.target.value, 200))
+  }
+  className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
+/>
             </div>
 
             <button
