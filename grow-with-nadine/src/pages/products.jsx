@@ -16,18 +16,21 @@ export default function Products() {
       name: "Hair Growth Oil",
       price: 199,
       description: "Natural oils to stimulate healthy hair growth.",
+      url: "IMG_1008.jpg",
     },
     {
       id: 2,
-      name: "Scalp Growth Serum",
+      name: "Hair Growth Spray",
       price: 249,
       description: "Strengthens roots and reduces hair fall.",
+      url: "IMG_1011.jpg",
     },
     {
       id: 3,
-      name: "Herbal Growth Shampoo",
+      name: "Hair Growth Mask",
       price: 179,
       description: "Cleanses and nourishes the scalp for growth.",
+      url: "IMG_1005.jpg",
     },
   ];
 
@@ -102,6 +105,7 @@ Delivery Address: ${cleanAddress}
             className="bg-white p-5 rounded-xl shadow-md"
           >
             <h2 className="font-semibold">{product.name}</h2>
+            <img alt="hair growth oil" className="max-w-60 max-h-60" src={product.url}/> 
             <p className="text-sm text-gray-600">{product.description}</p>
             <strong className="block mt-2">R{product.price}</strong>
 
@@ -127,6 +131,7 @@ Delivery Address: ${cleanAddress}
               <div key={index} className="flex justify-between text-sm my-1">
                 <span>{item.name}</span>
                 <span>R{item.price}</span>
+                <img src={item.url}/>
                 <button
                   onClick={() => removeFromCart(index)}
                   className="text-red-500 hover:underline ml-4"

@@ -45,7 +45,7 @@ export default function LandingPage() {
       </div>
     </section>
     <section className="flex flex-row flex-wrap bg-gray-300 gap-8 py-16 px-4 mt-8">
-      <div id="about">
+      <div id="about" className="text-center">
         <h1 className="text-3xl font-bold text-center mb-8">About</h1>
         <p className="max-w-4xl mx-auto px-4 text-center text-gray-700">
           Hi. I am Nadine 👋. Welcome to Grow By Nadine! I started this journey out of my own struggles with hair loss and the desire to find natural, effective solutions. 
@@ -54,7 +54,7 @@ export default function LandingPage() {
         </p>
       </div>
       <div>
-        <img src="/Nadine.jpeg" alt="About Us" className="w-full max-w-4xl mx-auto my-8 rounded-2xl shadow-2xl"/>
+        <img src="/IMG_1013.jpg" alt="About Us" className="w-full max-w-4xl mx-auto my-6 rounded-2xl shadow-2xl md:w-3xl"/>
       </div>
     </section>
     <section>
