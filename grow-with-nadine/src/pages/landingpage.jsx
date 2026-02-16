@@ -55,7 +55,7 @@ export default function LandingPage() {
         </p>
       </div>
       <div className="p-10">
-        <img src="public/nadine.jpeg" alt="About Us" className="w-full max-w-70 max-h-70 mx-auto my-6 rounded-2xl shadow-2xl md:mx-auto"/>
+        <img src="/nadine.jpeg" alt="About Us" className="w-full max-w-70 max-h-70 mx-auto my-6 rounded-2xl shadow-2xl md:mx-auto"/>
       </div>
     </section>
     <section>
