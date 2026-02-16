@@ -56,7 +56,7 @@ export default function LandingPage() {
       </div>
       <div className="px-4 sm:px-6 md:px-10 py-8">
   <img
-    src="/nadine.jpeg"
+    src="/nadine.jpg"
     alt="About Us"
     className="
       w-full
