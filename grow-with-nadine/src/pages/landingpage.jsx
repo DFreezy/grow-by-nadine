@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function LandingPage() {
   return (
@@ -53,8 +54,8 @@ export default function LandingPage() {
           or just want to enhance your hair's natural growth, we're here to support you every step of the way. Thank you for being part of our community!
         </p>
       </div>
-      <div>
-        <img src="/IMG_1013.jpg" alt="About Us" className="w-full max-w-4xl mx-auto my-6 rounded-2xl shadow-2xl md:w-3xl"/>
+      <div className="p-10">
+        <img src="/nadine.jpeg" alt="About Us" className="w-full max-w-70 max-h-70 mx-auto my-6 rounded-2xl shadow-2xl md:mx-auto"/>
       </div>
     </section>
     <section>

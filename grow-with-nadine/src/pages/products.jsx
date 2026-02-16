@@ -14,21 +14,21 @@ export default function Products() {
     {
       id: 1,
       name: "Hair Growth Oil",
-      price: 199,
+      price: 120,
       description: "Natural oils to stimulate healthy hair growth.",
       url: "IMG_1008.jpg",
     },
     {
       id: 2,
       name: "Hair Growth Spray",
-      price: 249,
+      price: 200,
       description: "Strengthens roots and reduces hair fall.",
       url: "IMG_1011.jpg",
     },
     {
       id: 3,
       name: "Hair Growth Mask",
-      price: 179,
+      price: 200,
       description: "Cleanses and nourishes the scalp for growth.",
       url: "IMG_1005.jpg",
     },
@@ -91,97 +91,144 @@ Delivery Address: ${cleanAddress}
 };
 
   return (
-    <div className="font-sans p-5">
-      <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold pt-5">🌿 Grow with Nadine</h1>
-        <p className="text-gray-600">Healthy hair starts at the root</p>
-      </header>
+  <div className="min-h-screen bg-[#f8f6f2] font-sans px-4 py-10">
 
-      {/* PRODUCTS */}
-      <div className="grid gap-5 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white p-5 rounded-xl shadow-md"
-          >
-            <h2 className="font-semibold">{product.name}</h2>
-            <img alt="hair growth oil" className="max-w-60 max-h-60" src={product.url}/> 
-            <p className="text-sm text-gray-600">{product.description}</p>
-            <strong className="block mt-2">R{product.price}</strong>
+    {/* HEADER */}
+    <header className="text-center mb-12">
+      <h1 className="text-4xl font-bold text-[#3f342c]">
+        🌿 Grow with Nadine
+      </h1>
+      <p className="text-[#6f6258] mt-2 text-lg">
+        Healthy hair starts at the root
+      </p>
+    </header>
+
+    {/* PRODUCTS */}
+    <div className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product) => (
+        <div
+          key={product.id}
+          className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden"
+        >
+          {/* IMAGE */}
+          <div className="bg-[#f4f1ec] flex justify-center items-center p-6">
+            <img
+              alt={product.name}
+              src={product.url}
+              className="h-48 object-contain"
+            />
+          </div>
+
+          {/* CONTENT */}
+          <div className="p-6 space-y-3">
+            <h2 className="text-lg font-semibold text-[#3f342c]">
+              {product.name}
+            </h2>
+
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {product.description}
+            </p>
+
+            <strong className="block text-lg text-[#957F6A]">
+              R{product.price}
+            </strong>
 
             <button
               onClick={() => addToCart(product)}
-              className="mt-3 w-full p-2.5 bg-[#52453a] text-white rounded-md hover:bg-[#3f342c] transition"
+              className="mt-2 w-full py-2.5 bg-[#52453a] text-white rounded-lg hover:bg-[#3f342c] transition"
             >
               Add to Cart
             </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
 
-      {/* CART (SMALL & CLEAN) */}
-      <div className="mt-10 bg-white p-5 rounded-xl max-w-md mx-auto">
-        <h2 className="font-semibold mb-3">🛒 Cart</h2>
+    {/* CART */}
+    <div className="mt-16 bg-white p-8 rounded-2xl shadow-lg max-w-lg mx-auto">
+      <h2 className="text-xl font-semibold text-[#3f342c] mb-5">
+        🛒 Cart
+      </h2>
 
-        {cart.length === 0 ? (
-          <p className="text-gray-500">Your cart is empty</p>
-        ) : (
-          <>
+      {cart.length === 0 ? (
+        <p className="text-gray-500 text-center py-6">
+          Your cart is empty
+        </p>
+      ) : (
+        <>
+          {/* CART ITEMS */}
+          <div className="space-y-4">
             {cart.map((item, index) => (
-              <div key={index} className="flex justify-between text-sm my-1">
-                <span>{item.name}</span>
-                <span>R{item.price}</span>
-                <img src={item.url}/>
+              <div
+                key={index}
+                className="flex items-center justify-between border-b pb-3"
+              >
+                <div className="flex items-center gap-3">
+                  <img
+                    src={item.url}
+                    alt={item.name}
+                    className="w-12 h-12 object-contain rounded-md bg-[#f4f1ec] p-1"
+                  />
+                  <div>
+                    <p className="text-sm font-medium">{item.name}</p>
+                    <p className="text-sm text-[#957F6A]">
+                      R{item.price}
+                    </p>
+                  </div>
+                </div>
+
                 <button
                   onClick={() => removeFromCart(index)}
-                  className="text-red-500 hover:underline ml-4"
+                  className="text-sm text-red-500 hover:text-red-600"
                 >
                   Remove
                 </button>
               </div>
             ))}
+          </div>
 
-            <div className="flex justify-between font-semibold mt-3 border-t pt-2">
-              <span>Total</span>
-              <span>R{total}</span>
-            </div>
-             
-               <div className="mt-5 space-y-3">
-             <input
-  type="text"
-  placeholder="Your name"
-  value={customerName}
-  maxLength={50}
-  required
-  onChange={(e) =>
-    setCustomerName(sanitizeInput(e.target.value, 50))
-  }
-  className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
-/>
+          {/* TOTAL */}
+          <div className="flex justify-between font-semibold text-lg mt-6 border-t pt-4">
+            <span>Total</span>
+            <span className="text-[#957F6A]">R{total}</span>
+          </div>
 
+          {/* FORM */}
+          <div className="mt-6 space-y-4">
+            <input
+              type="text"
+              placeholder="Your name"
+              value={customerName}
+              maxLength={50}
+              required
+              onChange={(e) =>
+                setCustomerName(sanitizeInput(e.target.value, 50))
+              }
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
+            />
 
-  <textarea
-  placeholder="Delivery address"
-  value={address}
-  maxLength={200}
-  required
-  rows={3}
-  onChange={(e) =>
-    setAddress(sanitizeInput(e.target.value, 200))
-  }
-  className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
-/>
-            </div>
+            <textarea
+              placeholder="Delivery address"
+              value={address}
+              maxLength={200}
+              required
+              rows={3}
+              onChange={(e) =>
+                setAddress(sanitizeInput(e.target.value, 200))
+              }
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#957F6A]"
+            />
+          </div>
 
-            <button
-              onClick={checkoutWhatsApp}
-              className="mt-4 w-full p-3 bg-[#957F6A] text-white rounded-lg hover:bg-[#7f6a58] transition"
-            >
-              Checkout via WhatsApp
-            </button>
-          </>
-        )}
-      </div>
+          <button
+            onClick={checkoutWhatsApp}
+            className="mt-6 w-full py-3 bg-[#957F6A] text-white rounded-xl hover:bg-[#7f6a58] transition font-medium"
+          >
+            Checkout via WhatsApp
+          </button>
+        </>
+      )}
     </div>
-  );
+  </div>
+);
 }
