@@ -54,9 +54,25 @@ export default function LandingPage() {
           or just want to enhance your hair's natural growth, we're here to support you every step of the way. Thank you for being part of our community!
         </p>
       </div>
-      <div className="p-10">
-        <img src="/nadine.jpeg" alt="About Us" className="w-full max-w-70 max-h-70 mx-auto my-6 rounded-2xl shadow-2xl md:mx-auto"/>
-      </div>
+      <div className="px-4 sm:px-6 md:px-10 py-8">
+  <img
+    src="/nadine.jpeg"
+    alt="About Us"
+    className="
+      w-full
+      max-w-xs
+      sm:max-w-sm
+      md:max-w-md
+      lg:max-w-lg
+      mx-auto
+      rounded-2xl
+      shadow-xl
+      object-cover
+      transition-transform duration-300 hover:scale-105
+    "
+  />
+</div>
+
     </section>
     <section>
       <h1 className="text-3xl font-bold text-center mb-8 mt-8" id="testimonials">Testimonials</h1>
