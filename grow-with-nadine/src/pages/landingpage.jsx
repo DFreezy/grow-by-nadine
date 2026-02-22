@@ -93,6 +93,9 @@ export default function LandingPage() {
             "I was skeptical at first, but after just a few weeks, I noticed a significant difference."
           </p>
         </div>
+        <div>
+          <img src="/before&after.jpeg" alt="difference" className="w-full max-w-xs mx-auto rounded-lg shadow-md" />
+        </div>
       </div>
       </div>
     </section>
