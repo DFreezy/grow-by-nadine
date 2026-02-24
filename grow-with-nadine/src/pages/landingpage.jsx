@@ -45,7 +45,7 @@ export default function LandingPage() {
 
       </div>
     </section>
-    <section className="flex flex-row flex-wrap bg-gray-300 gap-8 py-16 px-4 mt-8">
+    <section className="py-16 bg-gray-300 my-16">
       <div id="about" className="text-center">
         <h1 className="text-3xl font-bold text-center mb-8">About</h1>
         <p className="max-w-4xl mx-auto px-4 text-center text-gray-700">
@@ -54,22 +54,11 @@ export default function LandingPage() {
           or just want to enhance your hair's natural growth, we're here to support you every step of the way. Thank you for being part of our community!
         </p>
       </div>
-      <div className="px-4 sm:px-6 md:px-10 py-8">
+      <div className="flex justify-center mt-8">
   <img
     src="/nadine.jpg"
     alt="About Us"
-    className="
-      w-full
-      max-w-xs
-      sm:max-w-sm
-      md:max-w-md
-      lg:max-w-lg
-      mx-auto
-      rounded-2xl
-      shadow-xl
-      object-cover
-      transition-transform duration-300 hover:scale-105
-    "
+    className="w-full max-w-xs rounded-lg shadow-md"
   />
 </div>
 
@@ -93,11 +82,11 @@ export default function LandingPage() {
             "I was skeptical at first, but after just a few weeks, I noticed a significant difference."
           </p>
         </div>
-        <div>
-          <img src="/before&after.jpeg" alt="difference" className="w-full max-w-xs mx-auto rounded-lg shadow-md" />
+      </div>
+      </div>
+      <div className="justify-center flex mt-8">
+          <img src="/before&after.jpeg" alt="difference" className="w-full margin-0 max-w-xs mx-auto-0 rounded-lg shadow-md" />
         </div>
-      </div>
-      </div>
     </section>
     </div>
   );
