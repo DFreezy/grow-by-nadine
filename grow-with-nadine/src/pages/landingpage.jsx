@@ -47,7 +47,7 @@ export default function LandingPage() {
     </section>
     <section className="py-16 bg-gray-300 my-16">
       <div id="about" className="text-center">
-        <h1 className="text-3xl font-bold text-center mb-8">About</h1>
+        <h1 className="text-3xl font-bold text-center mb-8">Who am I?</h1>
         <p className="max-w-4xl mx-auto px-4 text-center text-gray-700">
           Hi. I am Nadine 👋. Welcome to Grow By Nadine! I started this journey out of my own struggles with hair loss and the desire to find natural, effective solutions. 
           Our products are crafted with care, using only the best ingredients to help you achieve healthy, beautiful hair. Whether you're dealing with thinning hair, breakage, 
@@ -64,7 +64,7 @@ export default function LandingPage() {
 
     </section>
     <section>
-      <h1 className="text-3xl font-bold text-center mb-8 mt-8" id="testimonials">Testimonials</h1>
+      <h1 className="text-3xl font-bold text-center mb-8 mt-8" id="testimonials">What others have said</h1>
     <div>
       <div className="max-w-4xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
         <div className="bg-white p-6 rounded-lg shadow-md">
@@ -84,9 +84,14 @@ export default function LandingPage() {
         </div>
       </div>
       </div>
+      <div className="bg-gray-200 py-8 mt-8">
+        <div>
+          <h2 className="text-2xl font-bold text-center mb-4">The results we offer</h2>
+        </div>
       <div className="justify-center flex mt-8">
           <img src="/before&after.jpeg" alt="difference" className="w-full margin-0 max-w-xs mx-auto-0 rounded-lg shadow-md" />
         </div>
+      </div>
     </section>
     </div>
   );

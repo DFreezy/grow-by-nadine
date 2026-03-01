@@ -13,7 +13,7 @@ let isProductPage = location.pathname === "/"
             </div>
             <ul className="flex space-x-4 list-none">
                 <a href="#about"><li>About</li></a>
-                <a href="#testimonials"><li>Testimonials</li></a>
+                <a href="#testimonials"><li className="mr-6">Testimonials</li></a>
             </ul>
             <Link to={isProductPage ? "/products" : "/"}>
             <button className="bg-white text-[#957F6A] px-4 py-2 rounded-md hover:bg-gray-200 transition">
