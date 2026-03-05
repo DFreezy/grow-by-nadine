@@ -103,7 +103,7 @@ Delivery Address: ${cleanAddress}
       {/* HEADER */}
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold text-[#3f342c]">
-          🌿 Grow with Nadine
+        Grow By Nadine
         </h1>
         <p className="text-[#6f6258] mt-2 text-lg">
           Healthy hair starts at the root
