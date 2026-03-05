@@ -106,7 +106,7 @@ Delivery Address: ${cleanAddress}
         Grow By Nadine
         </h1>
         <p className="text-[#6f6258] mt-2 text-lg">
-          Healthy hair starts at the root
+          Where natural care meets growth
         </p>
       </header>
 
