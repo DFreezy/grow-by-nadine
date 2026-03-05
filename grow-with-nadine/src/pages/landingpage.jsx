@@ -16,7 +16,7 @@ export default function LandingPage() {
         {/* Image */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="/images (1).jpeg"
+            src="/growbynadine.jpeg"
             alt="Landing Page Image"
             className="w-full max-w-sm rounded-2xl shadow-2xl"
           />
