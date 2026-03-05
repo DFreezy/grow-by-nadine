@@ -29,7 +29,7 @@ export default function Products() {
     },
     {
       id: 3,
-      name: "Hair Growth Mask",
+      name: "Hair Mask",
       price: 200,
       courierfee: 59,
       description: "Cleanses and nourishes the scalp for growth.",
