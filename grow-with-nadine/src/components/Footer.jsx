@@ -6,7 +6,6 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto text-center">
         <p>&copy; {new Date("2024-01-01").getFullYear()} Grow By Nadine. All rights reserved.</p>
         <p>Call us: (+27) 731577339</p>
-        <p>Email: info@growbynadine.com</p>
       </div>
     </footer>
   );
