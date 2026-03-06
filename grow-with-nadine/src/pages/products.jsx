@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ImageCarousel from "../components/ImageCarousel";
 
 const sanitizeInput = (value, maxLength = 100) => {
   return value
@@ -109,7 +110,7 @@ Delivery Address: ${cleanAddress}
           Where natural care meets growth
         </p>
       </header>
-
+      <ImageCarousel />
       {/* PRODUCTS */}
       <div className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
