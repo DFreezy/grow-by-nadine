@@ -60,9 +60,9 @@ const payWithPayFast = () => {
   const merchant_id = "10046644"; // 🔴 replace with your real one
   const merchant_key = "dskrb2ut3r9tg"; // 🔴 replace with your real one
 
-  const return_url = "https://localhost:5173/success";
-  const cancel_url = "https://localhost:5173/cancel";
-  const notify_url = "https://localhost:5173/notify";
+  const return_url = "https://www.growbynadine.co.za/success";
+  const cancel_url = "https://www.growbynadine.co.za/cancel";
+  const notify_url = "https://www.growbynadine.co.za/notify";
 
   const amount = grandTotal.toFixed(2);
   const item_name = "Grow By Nadine Order";
