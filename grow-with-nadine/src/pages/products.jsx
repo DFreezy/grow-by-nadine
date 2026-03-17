@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
+import Notify from "./notify";
+import Cancel from "./cancel";
+import Success from "./success";
+
 
 const sanitizeInput = (value, maxLength = 100) => {
   return value
@@ -11,6 +15,7 @@ const sanitizeInput = (value, maxLength = 100) => {
 };
 
 export default function Products() {
+  
   const products = [
     {
       id: 1,
@@ -37,6 +42,60 @@ export default function Products() {
       url: "IMG_1005.jpg",
     },
   ];
+
+const payWithPayFast = () => {
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+
+  const cleanName = sanitizeInput(customerName, 50);
+  const cleanAddress = sanitizeInput(address, 200);
+
+  if (!cleanName || !cleanAddress) {
+    alert("Please enter your name and delivery address");
+    return;
+  }
+
+  const merchant_id = "10046644"; // 🔴 replace with your real one
+  const merchant_key = "dskrb2ut3r9tg"; // 🔴 replace with your real one
+
+  const return_url = "https://localhost:5173/success";
+  const cancel_url = "https://localhost:5173/cancel";
+  const notify_url = "https://localhost:5173/notify";
+
+  const amount = grandTotal.toFixed(2);
+  const item_name = "Grow By Nadine Order";
+
+  const paymentData = {
+    merchant_id,
+    merchant_key,
+    return_url,
+    cancel_url,
+    notify_url,
+    name_first: cleanName,
+    email_address: "customer@email.com", // optional for now
+    m_payment_id: Date.now().toString(),
+    amount,
+    item_name,
+  };
+
+  // Create form dynamically
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "https://sandbox.payfast.co.za/eng/process"; // sandbox first
+
+  Object.keys(paymentData).forEach((key) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = paymentData[key];
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+};
 
   const [cart, setCart] = useState([]);
   const [customerName, setCustomerName] = useState("");
@@ -252,6 +311,12 @@ Delivery Address: ${cleanAddress}
             >
               Checkout via WhatsApp
             </button>
+            <button
+  onClick={payWithPayFast}
+  className="mt-3 w-full py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-medium"
+>
+  Pay with PayFast
+</button>
           </>
         )}
       </div>
