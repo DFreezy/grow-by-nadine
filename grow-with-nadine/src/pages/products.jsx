@@ -105,7 +105,7 @@ export default function Products() {
     form.method = "POST";
 
     // 🟢 USE LIVE WHEN READY
-    form.action = "https://www.payfast.co.za/eng/process";
+    form.action = "https://sandbox.payfast.co.za/eng/process";
 
     Object.keys(paymentData).forEach((key) => {
       const input = document.createElement("input");
