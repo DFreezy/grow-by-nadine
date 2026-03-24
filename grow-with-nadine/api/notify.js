@@ -2,12 +2,13 @@ import crypto from "crypto";
 
 export default async function handler(req, res) {
 
+  // PayFast ONLY sends POST
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }
 
   try {
-    // 🔥 FIX: Read raw body manually
+    // 🔥 Read raw body (required for PayFast)
     const buffers = [];
     for await (const chunk of req) {
       buffers.push(chunk);
@@ -15,10 +16,15 @@ export default async function handler(req, res) {
 
     const rawBody = Buffer.concat(buffers).toString();
 
-    // Convert URL-encoded string to object
+    // Convert to object
     const data = Object.fromEntries(new URLSearchParams(rawBody));
 
     console.log("🔔 PayFast ITN Received:", data);
+
+    // ✅ Always respond immediately (VERY IMPORTANT)
+    res.status(200).send("OK");
+
+    // ⬇️ Everything below runs AFTER response (non-blocking)
 
     // STEP 1: Build parameter string
     let pfParamString = "";
@@ -44,12 +50,12 @@ export default async function handler(req, res) {
     // STEP 3: Compare signatures
     if (generatedSignature !== data.signature) {
       console.error("❌ Invalid signature");
-      return res.status(400).send("Invalid signature");
+      return; // 🔥 DO NOT break ITN
     }
 
     console.log("✅ Signature valid");
 
-    // STEP 4: Validate with PayFast
+    // STEP 4: Validate with PayFast server
     const response = await fetch(
       "https://sandbox.payfast.co.za/eng/query/validate",
       {
@@ -65,25 +71,32 @@ export default async function handler(req, res) {
 
     if (result !== "VALID") {
       console.error("❌ PayFast validation failed:", result);
-      return res.status(400).send("Validation failed");
+      return;
     }
 
     console.log("✅ PayFast validation successful");
 
-    // STEP 5: Check payment
+    // STEP 5: Check payment status
     if (data.payment_status === "COMPLETE") {
+
       console.log("💰 Payment COMPLETE");
 
       const paidAmount = parseFloat(data.amount_gross);
       console.log("Amount paid:", paidAmount);
 
-      // 👉 Save order here later
+      // 🔒 IMPORTANT: verify amount (add your logic here later)
+
+      // ✅ TODO: Save order to database
+      // ✅ TODO: Send confirmation message
+
+    } else {
+      console.log("⚠️ Payment not complete:", data.payment_status);
     }
 
-    return res.status(200).send("OK");
-
   } catch (error) {
-    console.error("❌ Error processing ITN:", error);
-    return res.status(500).send("Server error");
+    console.error("❌ ITN Processing Error:", error);
+
+    // 🔥 STILL return 200 to avoid cURL error
+    return res.status(200).send("OK");
   }
 }
