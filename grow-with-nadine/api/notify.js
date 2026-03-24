@@ -1,12 +1,22 @@
 import crypto from "crypto";
 
 export default async function handler(req, res) {
+
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }
 
   try {
-    const data = req.body;
+    // 🔥 FIX: Read raw body manually
+    const buffers = [];
+    for await (const chunk of req) {
+      buffers.push(chunk);
+    }
+
+    const rawBody = Buffer.concat(buffers).toString();
+
+    // Convert URL-encoded string to object
+    const data = Object.fromEntries(new URLSearchParams(rawBody));
 
     console.log("🔔 PayFast ITN Received:", data);
 
@@ -25,7 +35,7 @@ export default async function handler(req, res) {
 
     pfParamString = pfParamString.slice(0, -1);
 
-    // STEP 2: Generate signature (NO PASSPHRASE for now)
+    // STEP 2: Generate signature
     const generatedSignature = crypto
       .createHash("md5")
       .update(pfParamString)
@@ -39,17 +49,17 @@ export default async function handler(req, res) {
 
     console.log("✅ Signature valid");
 
-    // STEP 4: Validate with PayFast server
-    const validationUrl =
-      "https://sandbox.payfast.co.za/eng/query/validate";
-
-    const response = await fetch(validationUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: pfParamString,
-    });
+    // STEP 4: Validate with PayFast
+    const response = await fetch(
+      "https://sandbox.payfast.co.za/eng/query/validate",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: pfParamString,
+      }
+    );
 
     const result = await response.text();
 
@@ -60,28 +70,18 @@ export default async function handler(req, res) {
 
     console.log("✅ PayFast validation successful");
 
-    // STEP 5: Check payment status
+    // STEP 5: Check payment
     if (data.payment_status === "COMPLETE") {
       console.log("💰 Payment COMPLETE");
 
-      // 🔥 IMPORTANT: Verify amount
       const paidAmount = parseFloat(data.amount_gross);
-
-      // TODO: Replace with real expected amount from your system
-      // Example:
-      // if (paidAmount !== expectedAmount) { reject }
-
       console.log("Amount paid:", paidAmount);
 
-      // ✅ TODO: Save order to database (future step)
-
-      // ✅ TODO: Send confirmation (WhatsApp / Email)
-
-    } else {
-      console.log("⚠️ Payment not complete:", data.payment_status);
+      // 👉 Save order here later
     }
 
     return res.status(200).send("OK");
+
   } catch (error) {
     console.error("❌ Error processing ITN:", error);
     return res.status(500).send("Server error");
