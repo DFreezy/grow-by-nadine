@@ -3,10 +3,9 @@ import ImageCarousel from "../components/ImageCarousel";
 
 const sanitizeInput = (value, maxLength = 100) => {
   return value
-    .replace(/[<>]/g, "")
-    .replace(/["'`;]/g, "")
-    .replace(/\s+/g, " ")
-    .trim()
+    .replace(/[<>]/g, "")     // prevent HTML injection
+    .replace(/["'`;]/g, "")   // prevent script issues
+    .trim()                   // clean edges only
     .slice(0, maxLength);
 };
 
@@ -233,18 +232,14 @@ Delivery Address: ${cleanAddress}
               type="text"
               placeholder="Your name"
               value={customerName}
-              onChange={(e) =>
-                setCustomerName(sanitizeInput(e.target.value, 50))
-              }
+              onChange={(e) => setCustomerName(e.target.value)}
               className="w-full mt-4 p-2 border"
             />
 
             <textarea
               placeholder="Delivery address"
               value={address}
-              onChange={(e) =>
-                setAddress(sanitizeInput(e.target.value, 200))
-              }
+              onChange={(e) => setAddress(e.target.value)}
               className="w-full mt-2 p-2 border"
             />
 
