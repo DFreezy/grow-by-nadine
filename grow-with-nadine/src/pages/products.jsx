@@ -22,7 +22,7 @@ export default function Products() {
     {
       id: 2,
       name: "Hair Growth Spray",
-      price: 200,
+      price: 150,
       courierfee: 59,
       description: "Strengthens roots and reduces hair fall.",
       url: "IMG_1011.jpg",
@@ -30,7 +30,7 @@ export default function Products() {
     {
       id: 3,
       name: "Hair Mask",
-      price: 200,
+      price: 150,
       courierfee: 59,
       description: "Cleanses and nourishes the scalp for growth.",
       url: "IMG_1005.jpg",
