@@ -253,7 +253,7 @@ Delivery Address: ${cleanAddress}
 
             <button
               onClick={payWithPayFast}
-              className="mt-2 w-full bg-green-600 text-white py-2 rounded"
+              className="mt-2 w-full bg-green-600 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Pay with PayFast
             </button>
