@@ -50,7 +50,12 @@ Add screenshots of:
 Example:
 
 ```md
-![Homepage](./screenshots/homepage.png)
+![Homepage](./screenshots/homePage.png)
+![Products](./screenshots/productPage.png)
+![Checkout](./screenshots/checkoutForm.png)
+![Footer](./screenshots/footer.png)
+![About](./screenshots/about.png)
+![Testimonials](./screenshots/testimonials.png)
 ```
 
 ## Installation
