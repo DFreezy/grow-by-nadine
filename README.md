@@ -1,3 +1,4 @@
+Loom video: https://www.loom.com/share/bd57f5c951924c089dd26b9016cb13aa
 # Grow by Nadine
 
 A modern wellness and e-commerce website built for **Grow by Nadine**, a South African brand focused on natural, science-backed hair growth solutions designed to promote healthy hair and confidence.
