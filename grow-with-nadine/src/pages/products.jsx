@@ -22,7 +22,7 @@ export default function Products() {
     {
       id: 2,
       name: "Hair Growth Spray",
-      price: 150,
+      price: 200,
       courierfee: 59,
       description: "Strengthens roots and reduces hair fall.",
       url: "IMG_1011.jpg",
@@ -30,7 +30,7 @@ export default function Products() {
     {
       id: 3,
       name: "Hair Mask",
-      price: 150,
+      price: 200,
       courierfee: 59,
       description: "Cleanses and nourishes the scalp for growth.",
       url: "IMG_1005.jpg",
@@ -40,6 +40,7 @@ export default function Products() {
   const [cart, setCart] = useState([]);
   const [customerName, setCustomerName] = useState("");
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
 
   const addToCart = (product) => {
     setCart((prev) => [...prev, product]);
@@ -153,6 +154,7 @@ Courier Total: R${courierTotal}
 Grand Total: R${grandTotal}
 
 Name: ${cleanName}
+Email: ${email}
 Delivery Address: ${cleanAddress}
 `;
 
@@ -243,6 +245,14 @@ Delivery Address: ${cleanAddress}
               className="w-full mt-2 p-2 border"
             />
 
+            <input
+              type="email"
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full mt-2 p-2 border"
+            />
+
             {/* BUTTONS */}
             <button
               onClick={checkoutWhatsApp}
@@ -251,12 +261,12 @@ Delivery Address: ${cleanAddress}
               WhatsApp Checkout
             </button>
 
-            <button
+            {/*<button
               onClick={payWithPayFast}
               className="mt-2 w-full bg-green-600 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Pay with PayFast
-            </button>
+            </button>*/}
           </>
         )}
       </div>
